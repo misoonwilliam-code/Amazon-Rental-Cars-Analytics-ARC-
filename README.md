@@ -60,11 +60,6 @@ ALTER TABLE [dbo].[Contract_Line$]
 ADD CONSTRAINT FK_Line_To_Contract
 FOREIGN KEY ([Contract ID]) REFERENCES [dbo].[All_Contract$]([Contract ID]);
 
--- =========================================================================
--- ### 2. Business Performance Analysis (DML)
--- This query calculates crucial business metrics—Total Rentals, Total Revenue, 
--- and Total Profit—segmented by car brand to identify the most lucrative assets.
--- =========================================================================
 ```
 ### 2. Business Performance Analysis (DML)
 This query calculates crucial business metrics—Total Rentals, Total Revenue, and Total Profit—segmented by car brand to identify the most lucrative assets.
