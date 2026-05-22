@@ -39,7 +39,7 @@ ALTER COLUMN [Contract ID] INT NOT NULL;
 ALTER TABLE [dbo].[All_Contract$] 
 ADD CONSTRAINT PK_All_Contract PRIMARY KEY ([Contract ID]);
 
--- 2. Establishing Foreign Key Relationships (Fact Table Creation)
+-- 2. Establishing Foreign Key Relationships
 ALTER TABLE [dbo].[All_Contract$]
 ADD CONSTRAINT FK_Vehicle_Link 
 FOREIGN KEY ([Vehicle ID]) REFERENCES [dbo].[Vehicle$]([Vehicle ID]);
