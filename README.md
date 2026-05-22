@@ -7,7 +7,7 @@
 In this project, I structures and optimizes a relational database for a car rental system using SQL Server. This includes defining Primary Keys, enforcing Referential Integrity through Foreign Keys, and conducting business performance analysis.
 
 ### 1. Database Schema & Relationships (DDL)
-The script below sets up constraints to build a robust star/snowflake schema, ensuring data consistency across contracts, customers, vehicles, and locations.
+The script below sets up constraints to build a robust star/snowflake schema, ensuring data consistency across contracts, customers, vehicles, and locations
 
 ```sql
 USE [Car Rental];
@@ -59,3 +59,16 @@ FOREIGN KEY ([Drop Off Branch ID]) REFERENCES [dbo].[Location_Dropoff$]([Drop of
 ALTER TABLE [dbo].[Contract_Line$] 
 ADD CONSTRAINT FK_Line_To_Contract
 FOREIGN KEY ([Contract ID]) REFERENCES [dbo].[All_Contract$]([Contract ID]);
+
+### 2. Business Performance Analysis (DML)
+This query calculates crucial business metrics—Total Rentals, Total Revenue, and Total Profit—segmented by car brand to identify the most lucrative assets.
+
+SELECT 
+    V.[Brand] AS Car_Brand,
+    COUNT(C.[Contract ID]) AS Total_Rentals,
+    SUM(C.[Total Amount]) AS Total_Revenue,
+    SUM(C.[Total Amount] - C.[Vehicle Cost]) AS Total_Profit
+FROM [dbo].[All_Contract$] C
+JOIN [dbo].[Vehicle$] V ON C.[Vehicle ID] = V.[Vehicle ID]
+GROUP BY V.[Brand]
+ORDER BY Total_Profit DESC;
